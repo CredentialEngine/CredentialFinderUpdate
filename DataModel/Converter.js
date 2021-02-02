@@ -50,7 +50,7 @@ function spreadsheetToTypeScript(rawText){
 			if(Property.Note && Property.Note.length > 0){
 				RClass.TypeScript.push("\t" + "// " + Property.Note); 
 			}
-			RClass.TypeScript.push("\t" + Property.Property + ": " + (Property.Multi ? "[" + Property.ValueType + ", ...];" : Property.ValueType + ";"));
+			RClass.TypeScript.push("\t" + Property.Property + ": " + (Property.Multi == "Yes" ? "[" + Property.ValueType + ", ...];" : Property.ValueType + ";"));
 		});
 		RClass.TypeScript.push("}");
 		RClass.TypeScriptRaw = RClass.TypeScript.join("\n");
