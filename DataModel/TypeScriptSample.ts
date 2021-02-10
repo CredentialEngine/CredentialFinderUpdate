@@ -7,71 +7,71 @@ interface Organization {
 	RecordLanguage: string;
 	// QAReceived (combined)
 	AccreditedBy: AJAXSettings;
-	AccreditedIn: [JurisdictionProfile, ...];
+	AccreditedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
 	Accredits: AJAXSettings;
-	Address: [Place, ...];
-	AdministrationProcess: [ProcessProfile, ...];
+	Address: Array<Place>;
+	AdministrationProcess: Array<ProcessProfile>;
 	AgentPurpose: Link;
 	AgentPurposeDescription: string;
 	AgentSectorType: Link;
-	AgentType: [Link, ...];
-	AlternateName: [string, ...];
-	AppealProcess: [ProcessProfile, ...];
+	AgentType: Array<Link>;
+	AlternateName: Array<string>;
+	AppealProcess: Array<ProcessProfile>;
 	// QAReceived (combined)
 	ApprovedBy: AJAXSettings;
-	ApprovedIn: [JurisdictionProfile, ...];
+	ApprovedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
 	Approves: AJAXSettings;
-	AvailabilityListing: [Link, ...];
-	ComplaintProcess: [ProcessProfile, ...];
+	AvailabilityListing: Array<Link>;
+	ComplaintProcess: Array<ProcessProfile>;
 	CTID: string;
 	Department: AJAXSettings;
 	Description: string;
-	DevelopmentProcess: [ProcessProfile, ...];
+	DevelopmentProcess: Array<ProcessProfile>;
 	DUNS: string;
-	Email: [string, ...];
+	Email: Array<string>;
 	FEIN: string;
 	FoundingDate: string;
 	HasConditionManifest: AJAXSettings;
 	HasCostManifest: AJAXSettings;
-	HasVerificationService: [ProcessProfile, ...];
-	Identifier: [IdentifierValue, ...];
+	HasVerificationService: Array<ProcessProfile>;
+	Identifier: Array<IdentifierValue>;
 	Image: Link;
-	IndustryType: [Link, ...];
+	IndustryType: Array<Link>;
 	IPEDSID: string;
 	ISICV4: string;
-	Jurisdiction: [JurisdictionProfile, ...];
-	Keyword: [string, ...];
+	Jurisdiction: Array<JurisdictionProfile>;
+	Keyword: Array<string>;
 	LEICode: string;
-	MaintenanceProcess: [ProcessProfile, ...];
+	MaintenanceProcess: Array<ProcessProfile>;
 	MissionAndGoalsStatement: Link;
 	MissionAndGoalsStatementDescription: string;
 	// Generally NAICS is merged in Industry type. So no need to display separately?
-	NAICS: [string, ...];
+	NAICS: Array<string>;
 	Name: string;
 	Offers: AJAXSettings;
 	OPEID: string;
 	Owns: AJAXSettings;
 	ParentOrganization: AJAXSettings;
-	QualityAssuranceTargetType: [Link, ...];
+	QualityAssuranceTargetType: Array<Link>;
 	// QAReceived (combined)
 	RecognizedBy: AJAXSettings;
-	RecognizedIn: [JurisdictionProfile, ...];
+	RecognizedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
 	Recognizes: AJAXSettings;
 	// QAReceived (combined)
 	RegulatedBy: AJAXSettings;
-	RegulatedIn: [JurisdictionProfile, ...];
+	RegulatedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
 	Regulates: AJAXSettings;
 	Renews: AJAXSettings;
-	ReviewProcess: [ProcessProfile, ...];
-	RevocationProcess: [ProcessProfile, ...];
+	ReviewProcess: Array<ProcessProfile>;
+	RevocationProcess: Array<ProcessProfile>;
 	Revokes: AJAXSettings;
-	SameAs: [Link, ...];
-	ServiceType: [Link, ...];
-	SocialMedia: [Link, ...];
+	SameAs: Array<Link>;
+	ServiceType: Array<Link>;
+	SocialMedia: Array<Link>;
 	SubjectWebpage: Link;
 	SubOrganization: AJAXSettings;
 	TransferValueStatement: Link;
@@ -86,97 +86,97 @@ interface Credential {
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
 	RecordLanguage: string;
 	AccreditedBy: AJAXSettings;
-	AccreditedIn: [Place, ...];
-	AdministrationProcess: [ProcessProfile, ...];
-	AdvancedStandingFrom: [ConditionProfile, ...];
-	AlternateName: [string, ...];
-	AppealProcess: [ProcessProfile, ...];
+	AccreditedIn: Array<Place>;
+	AdministrationProcess: Array<ProcessProfile>;
+	AdvancedStandingFrom: Array<ConditionProfile>;
+	AlternateName: Array<string>;
+	AppealProcess: Array<ProcessProfile>;
 	ApprovedBy: AJAXSettings;
-	ApprovedIn: [Place, ...];
-	AssessmentDeliveryType: [Link, ...];
-	AudienceLevelType: [Link, ...];
-	AudienceType: [Link, ...];
-	AvailabilityListing: [Link, ...];
-	AvailableAt: [Place, ...];
+	ApprovedIn: Array<Place>;
+	AssessmentDeliveryType: Array<Link>;
+	AudienceLevelType: Array<Link>;
+	AudienceType: Array<Link>;
+	AvailabilityListing: Array<Link>;
+	AvailableAt: Array<Place>;
 	AvailableOnlineAt: Link;
 	BroadAlignment: AJAXSettings;
 	CommonConditions: AJAXSettings;
 	CommonCosts: AJAXSettings;
-	ComplaintProcess: [ProcessProfile, ...];
+	ComplaintProcess: Array<ProcessProfile>;
 	CopyrightHolder: AJAXSettings;
-	Corequisite: [ConditionProfile, ...];
+	Corequisite: Array<ConditionProfile>;
 	CredentialId: string;
 	CredentialStatusType: Link;
 	CTID: string;
 	DateEffective: string;
-	DegreeConcentration: [Link, ...];
-	DegreeMajor: [Link, ...];
-	DegreeMinor: [Link, ...];
+	DegreeConcentration: Array<Link>;
+	DegreeMajor: Array<Link>;
+	DegreeMinor: Array<Link>;
 	Description: string;
-	DevelopmentProcess: [ProcessProfile, ...];
-	Earnings: [EarningsProfile, ...];
-	EmploymentOutcome: [EmploymentOutcomeProfile, ...];
-	EstimatedCost: [CostProfile, ...];
-	EstimatedDuration: [DurationProfile, ...];
+	DevelopmentProcess: Array<ProcessProfile>;
+	Earnings: Array<EarningsProfile>;
+	EmploymentOutcome: Array<EmploymentOutcomeProfile>;
+	EstimatedCost: Array<CostProfile>;
+	EstimatedDuration: Array<DurationProfile>;
 	ExactAlignment: AJAXSettings;
 	ExpirationDate: string;
-	FinancialAssistance: [FinancialAssistanceProfile, ...];
+	FinancialAssistance: Array<FinancialAssistanceProfile>;
 	HasPart: AJAXSettings;
-	Holders: [HoldersProfile, ...];
-	Identifier: [IdentifierValue, ...];
+	Holders: Array<HoldersProfile>;
+	Identifier: Array<IdentifierValue>;
 	Image: Link;
-	IndustryType: [Link, ...];
+	IndustryType: Array<Link>;
 	// BCP-47 language code for the credential being described, rather than the record itself. Do not confuse this with the RecordLanguage metadata property above.
-	InLanguage: [string, ...];
-	InstructionalProgramType: [Link, ...];
-	IsAdvancedStandingFor: [ConditionProfile, ...];
+	InLanguage: Array<string>;
+	InstructionalProgramType: Array<Link>;
+	IsAdvancedStandingFor: Array<ConditionProfile>;
 	ISICV4: string;
 	IsPartOf: AJAXSettings;
-	IsPreparationFor: [ConditionProfile, ...];
-	IsRecommendedFor: [ConditionProfile, ...];
-	IsRequiredFor: [ConditionProfile, ...];
-	Jurisdiction: [JurisdictionProfile, ...];
-	Keyword: [string, ...];
+	IsPreparationFor: Array<ConditionProfile>;
+	IsRecommendedFor: Array<ConditionProfile>;
+	IsRequiredFor: Array<ConditionProfile>;
+	Jurisdiction: Array<JurisdictionProfile>;
+	Keyword: Array<string>;
 	LatestVersion: AJAXSettings;
-	LearningDeliveryType: [Link, ...];
-	MaintenanceProcess: [ProcessProfile, ...];
+	LearningDeliveryType: Array<Link>;
+	MaintenanceProcess: Array<ProcessProfile>;
 	MajorAlignment: AJAXSettings;
 	MinorAlignment: AJAXSettings;
 	NAICS: string;
 	Name: string;
 	NarrowAlignment: AJAXSettings;
 	NextVersion: AJAXSettings;
-	OccupationType: [Link, ...];
+	OccupationType: Array<Link>;
 	OfferedBy: AJAXSettings;
-	OfferedIn: [Place, ...];
+	OfferedIn: Array<Place>;
 	OwnedBy: AJAXSettings;
-	PreparationFrom: [ConditionProfile, ...];
+	PreparationFrom: Array<ConditionProfile>;
 	PreviousVersion: AJAXSettings;
 	ProcessStandards: Link;
 	ProcessStandardsDescription: string;
 	RecognizedBy: AJAXSettings;
-	RecognizedIn: [Place, ...];
-	Recommends: [ConditionProfile, ...];
-	Region: [Place, ...];
+	RecognizedIn: Array<Place>;
+	Recommends: Array<ConditionProfile>;
+	Region: Array<Place>;
 	RegulatedBy: AJAXSettings;
-	RegulatedIn: [Place, ...];
-	Renewal: [ConditionProfile, ...];
-	RenewalFrequency: [DurationProfile, ...];
+	RegulatedIn: Array<Place>;
+	Renewal: Array<ConditionProfile>;
+	RenewalFrequency: Array<DurationProfile>;
 	RenewedBy: AJAXSettings;
-	RenewedIn: [Place, ...];
-	Requires: [ConditionProfile, ...];
-	ReviewProcess: [ProcessProfile, ...];
-	Revocation: [RevocationProfile, ...];
-	RevocationProcess: [ProcessProfile, ...];
+	RenewedIn: Array<Place>;
+	Requires: Array<ConditionProfile>;
+	ReviewProcess: Array<ProcessProfile>;
+	Revocation: Array<RevocationProfile>;
+	RevocationProcess: Array<ProcessProfile>;
 	RevokedBy: AJAXSettings;
-	RevokedIn: [Place, ...];
+	RevokedIn: Array<Place>;
 	SameAs: AJAXSettings;
-	Subject: [Link, ...];
+	Subject: Array<Link>;
 	SubjectWebpage: Link;
 	SupersededBy: AJAXSettings;
 	Supersedes: AJAXSettings;
 	TargetPathway: AJAXSettings;
-	VersionIdentifier: [IdentifierValue, ...];
+	VersionIdentifier: Array<IdentifierValue>;
 }
 
 interface Link {
@@ -193,22 +193,22 @@ interface JurisdictionProfile {
 	AssertedBy: number;
 	Description: string;
 	GlobalJurisdiction: bool;
-	JurisdictionException: [Place, ...];
+	JurisdictionException: Array<Place>;
 	MainJurisdiction: Place;
 }
 
 interface ProcessProfile {
 	DateEffective: string;
 	Description: string;
-	ExternalInputType: [Link, ...];
-	Jurisdiction: [JurisdictionProfile, ...];
+	ExternalInputType: Array<Link>;
+	Jurisdiction: Array<JurisdictionProfile>;
 	ProcessFrequency: string;
 	ProcessingAgent: AJAXSettings;
 	ProcessMethod: Link;
 	ProcessMethodDescription: string;
 	ProcessStandards: Link;
 	ProcessStandardsDescription: string;
-	Region: [Place, ...];
+	Region: Array<Place>;
 	ScoringMethodDescription: string;
 	ScoringMethodExample: Link;
 	ScoringMethodExampleDescription: string;
@@ -227,22 +227,22 @@ interface IdentifierValue {
 }
 
 interface ConditionProfile {
-	AlternativeCondition: [ConditionProfile, ...];
+	AlternativeCondition: Array<ConditionProfile>;
 	AssertedBy: AJAXSettings;
-	AudienceLevelType: [Link, ...];
-	AudienceType: [Link, ...];
+	AudienceLevelType: Array<Link>;
+	AudienceType: Array<Link>;
 	CommonCosts: AJAXSettings;
-	Condition: [string, ...];
+	Condition: Array<string>;
 	CreditUnitTypeDescription: string;
-	CreditValue: [ValueProfile, ...];
+	CreditValue: Array<ValueProfile>;
 	DateEffective: string;
 	Description: string;
-	EstimatedCost: [CostProfile, ...];
+	EstimatedCost: Array<CostProfile>;
 	Experience: string;
-	Jurisdiction: [JurisdictionProfile, ...];
+	Jurisdiction: Array<JurisdictionProfile>;
 	MinimumAge: number;
 	Name: string;
-	ResidentOf: [Place, ...];
+	ResidentOf: Array<Place>;
 	SubjectWebpage: Link;
 	SubmissionOf: Link;
 	SubmissionOfDescription: string;
@@ -255,9 +255,9 @@ interface ConditionProfile {
 }
 
 interface ValueProfile {
-	CreditLevelType: [Link, ...];
-	CreditUnitType: [Link, ...];
-	Subject: [Link, ...];
+	CreditLevelType: Array<Link>;
+	CreditUnitType: Array<Link>;
+	Subject: Array<Link>;
 	Description: string;
 	MaxValue: number;
 	MinValue: number;
@@ -266,19 +266,19 @@ interface ValueProfile {
 }
 
 interface CostProfile {
-	AudienceType: [Link, ...];
-	Condition: [string, ...];
+	AudienceType: Array<Link>;
+	Condition: Array<string>;
 	CostDetails: Link;
 	Currency: string;
 	Description: string;
-	DirectCostType: [Link, ...];
+	DirectCostType: Array<Link>;
 	EndDate: string;
-	Jurisdiction: [JurisdictionProfile, ...];
+	Jurisdiction: Array<JurisdictionProfile>;
 	Name: string;
 	PaymentPattern: string;
 	Price: number;
-	Region: [Place, ...];
-	ResidencyType: [Link, ...];
+	Region: Array<Place>;
+	ResidencyType: Array<Link>;
 	StartDate: string;
 }
 
@@ -301,8 +301,8 @@ interface Duration {
 
 interface FinancialAssistanceProfile {
 	Description: string;
-	FinancialAssistanceType: [Link, ...];
-	FinancialAssistanceValue: [QuantitativeValue, ...];
+	FinancialAssistanceType: Array<Link>;
+	FinancialAssistanceValue: Array<QuantitativeValue>;
 	Name: string;
 	SubjectWebpage: Link;
 }
@@ -312,20 +312,20 @@ interface QuantitativeValue {
 	MaxValue: number;
 	MinValue: number;
 	Percentage: number;
-	UnitText: [Link, ...];
+	UnitText: Array<Link>;
 	Value: number;
 }
 
 interface ConditionManifest {
 	ConditionManifestOf: AJAXSettings;
-	Corequisite: [ConditionProfile, ...];
+	Corequisite: Array<ConditionProfile>;
 	CTID: string;
 	Description: string;
-	EntryCondition: [ConditionProfile, ...];
+	EntryCondition: Array<ConditionProfile>;
 	Name: string;
-	Recommends: [ConditionProfile, ...];
-	Renewal: [ConditionProfile, ...];
-	Requires: [ConditionProfile, ...];
+	Recommends: Array<ConditionProfile>;
+	Renewal: Array<ConditionProfile>;
+	Requires: Array<ConditionProfile>;
 	SubjectWebpage: Link;
 }
 
@@ -335,7 +335,7 @@ interface CostManifest {
 	CTID: string;
 	Description: string;
 	EndDate: string;
-	EstimatedCost: [CostProfile, ...];
+	EstimatedCost: Array<CostProfile>;
 	Name: string;
 	StartDate: string;
 }
@@ -343,12 +343,12 @@ interface CostManifest {
 interface EarningsProfile {
 	DateEffective: string;
 	HighEarnings: number;
-	Jurisdiction: [JurisdictionProfile, ...];
+	Jurisdiction: Array<JurisdictionProfile>;
 	LowEarnings: number;
 	MedianEarnings: number;
 	Name: string;
 	PostReceiptMonths: number;
-	Region: [Place, ...];
+	Region: Array<Place>;
 	Source: Link;
 	RelevantDataSet: AJAXSettings;
 }
@@ -357,7 +357,7 @@ interface EmploymentOutcomeProfile {
 	DateEffective: string;
 	Description: string;
 	JobsObtained: number;
-	Jurisdiction: [JurisdictionProfile, ...];
+	Jurisdiction: Array<JurisdictionProfile>;
 	Name: string;
 	Source: Link;
 	RelevantDataSet: AJAXSettings;
@@ -367,10 +367,10 @@ interface HoldersProfile {
 	DateEffective: string;
 	DemographicInformation: string;
 	Description: string;
-	Jurisdiction: [JurisdictionProfile, ...];
+	Jurisdiction: Array<JurisdictionProfile>;
 	Name: string;
 	NumberAwarded: number;
-	Region: [Place, ...];
+	Region: Array<Place>;
 	Source: Link;
 	RelevantDataSet: AJAXSettings;
 }
