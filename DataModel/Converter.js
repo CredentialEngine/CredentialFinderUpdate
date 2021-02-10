@@ -42,6 +42,8 @@ function spreadsheetToTypeScript(rawText){
 			currentClass.Properties.push(Item);
 		}
 	});
+	//Don't leave the last class out!
+	Result.Classes.push(currentClass);
 	
 	//Construct the TypeScript
 	Result.Classes.forEach(function(RClass){
