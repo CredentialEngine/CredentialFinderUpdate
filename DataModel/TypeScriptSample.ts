@@ -35,7 +35,7 @@ interface Organization {
 	FoundingDate: string;
 	HasConditionManifest: AJAXSettings;
 	HasCostManifest: AJAXSettings;
-	HasVerificationService: Array<ProcessProfile>;
+	HasVerificationService: Array<VerificationServiceProfile>;
 	Identifier: Array<IdentifierValue>;
 	Image: Link;
 	IndustryType: Array<Link>;
@@ -65,9 +65,11 @@ interface Organization {
 	RegulatedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
 	Regulates: AJAXSettings;
+	// Same as Owns/Offers link
 	Renews: AJAXSettings;
 	ReviewProcess: Array<ProcessProfile>;
 	RevocationProcess: Array<ProcessProfile>;
+	// Same as Owns/Offers link
 	Revokes: AJAXSettings;
 	SameAs: Array<Link>;
 	ServiceType: Array<Link>;
@@ -190,9 +192,8 @@ interface Link {
 
 interface JurisdictionProfile {
 	AssertedBy: AJAXSettings;
-	AssertedBy: number;
 	Description: string;
-	GlobalJurisdiction: bool;
+	GlobalJurisdiction: boolean;
 	JurisdictionException: Array<Place>;
 	MainJurisdiction: Place;
 }
@@ -382,4 +383,21 @@ interface AJAXSettings {
 	Total: number;
 	// Generic JSON object containing any relevant query data to pass to the server when executing the request.
 	QueryData: Object;
+}
+
+interface VerificationServiceProfile {
+	DateEffective: string;
+	Description: string;
+	EstimatedCost: Array<AJAXSettings>;
+	HolderMustAuthorize: boolean;
+	Jurisdiction: Array<JurisdictionProfile>;
+	OfferedBy: AJAXSettings;
+	OfferedIn: Array<JurisdictionProfile>;
+	Region: Array<Place>;
+	SubjectWebpage: Link;
+	TargetCredential: AJAXSettings;
+	VerificationDirectory: Link;
+	VerificationMethodDescription: string;
+	VerificationService: AJAXSettings;
+	VerifiedClaimType: AJAXSettings;
 }
