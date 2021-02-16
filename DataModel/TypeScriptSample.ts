@@ -4,7 +4,13 @@ interface Organization {
 	// Will be either "ceterms:CredentialOrganization" or "ceterms:QACredentialOrganization"
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
-	RecordLanguage: string;
+	Meta_Language: string;
+	// The record identifer for the organization. Use to format links to the detial page
+	Meta_Id: int;
+	// Stored as a C# DateTime in our system; converted to just a formatted Date for the record
+	Meta_LastUpdated: string;
+	// 3-full organization, 2-reference organization
+	Meta_StateId: int;
 	// QAReceived (combined)
 	AccreditedBy: AJAXSettings;
 	AccreditedIn: Array<JurisdictionProfile>;
@@ -71,7 +77,7 @@ interface Organization {
 	RevocationProcess: Array<ProcessProfile>;
 	// Same as Owns/Offers link
 	Revokes: AJAXSettings;
-	SameAs: Array<Link>;
+	SameAs: AJAXSettings;
 	ServiceType: Array<Link>;
 	SocialMedia: Array<Link>;
 	SubjectWebpage: Link;
@@ -86,7 +92,7 @@ interface Credential {
 	// Will be the Shorthand URI for one of the subclasses of ceterms:Credential (See "Credential and Subclasses": https://credreg.net/ctdl/terms#groups )
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
-	RecordLanguage: string;
+	Meta_Language: string;
 	AccreditedBy: AJAXSettings;
 	AccreditedIn: Array<Place>;
 	AdministrationProcess: Array<ProcessProfile>;
@@ -128,7 +134,7 @@ interface Credential {
 	Identifier: Array<IdentifierValue>;
 	Image: Link;
 	IndustryType: Array<Link>;
-	// BCP-47 language code for the credential being described, rather than the record itself. Do not confuse this with the RecordLanguage metadata property above.
+	// BCP-47 language code for the Credential being described, rather than the record itself. Do not confuse this with the Meta_Language metadata property above.
 	InLanguage: Array<string>;
 	InstructionalProgramType: Array<Link>;
 	IsAdvancedStandingFor: Array<ConditionProfile>;
@@ -159,7 +165,6 @@ interface Credential {
 	RecognizedBy: AJAXSettings;
 	RecognizedIn: Array<Place>;
 	Recommends: Array<ConditionProfile>;
-	Region: Array<Place>;
 	RegulatedBy: AJAXSettings;
 	RegulatedIn: Array<Place>;
 	Renewal: Array<ConditionProfile>;
@@ -179,6 +184,296 @@ interface Credential {
 	Supersedes: AJAXSettings;
 	TargetPathway: AJAXSettings;
 	VersionIdentifier: Array<IdentifierValue>;
+}
+
+interface Assessment {
+	// Will always be "Assessment"
+	BroadType: string;
+	// Will be "ceterms:AssessmentProfile"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	AccreditedBy: AJAXSettings;
+	AccreditedIn: Array<Place>;
+	AdministrationProcess: Array<ProcessProfile>;
+	AdvancedStandingFrom: Array<ConditionProfile>;
+	ApprovedBy: AJAXSettings;
+	ApprovedIn: Array<Place>;
+	Assesses: AJAXSettings;
+	AssessmentExample: Link;
+	AssessmentExampleDescription: string;
+	AssessmentMethodDescription: string;
+	AssessmentMethodType: Array<Link>;
+	AssessmentOutput: string;
+	AssessmentUseType: Array<Link>;
+	AudienceLevelType: Array<Link>;
+	AudienceType: Array<Link>;
+	AvailabilityListing: Array<Link>;
+	AvailableAt: Array<Place>;
+	AvailableOnlineAt: Link;
+	CommonConditions: AJAXSettings;
+	CommonCosts: AJAXSettings;
+	Corequisite: Array<ConditionProfile>;
+	CreditUnitTypeDescription: string;
+	CreditValue: Array<ValueProfile>;
+	CTID: string;
+	DateEffective: string;
+	DeliveryType: Array<Link>;
+	DeliveryTypeDescription: string;
+	Description: string;
+	DevelopmentProcess: Array<ProcessProfile>;
+	EntryCondition: Array<ConditionProfile>;
+	EstimatedCost: Array<CostProfile>;
+	EstimatedDuration: Array<DurationProfile>;
+	ExpirationDate: string;
+	ExternalResearch: Array<Link>;
+	FinancialAssistance: Array<FinancialAssistanceProfile>;
+	HasGroupEvaluation: boolean;
+	HasGroupParticipation: boolean;
+	Identifier: Array<IdentifierValue>;
+	IndustryType: Array<Link>;
+	// BCP-47 language code for the Assessment being described, rather than the record itself. Do not confuse this with the Meta_Language metadata property above.
+	InLanguage: Array<string>;
+	InstructionalProgramType: Array<Link>;
+	IsAdvancedStandingFor: Array<ConditionProfile>;
+	IsPreparationFor: Array<ConditionProfile>;
+	IsProctored: boolean;
+	IsRecommendedFor: ConditionProfile;
+	IsRequiredFor: Array<ConditionProfile>;
+	Jurisdiction: Array<JurisdictionProfile>;
+	Keyword: Array<string>;
+	LearningMethodDescription: string;
+	MaintenanceProcess: Array<ProcessProfile>;
+	Name: string;
+	OccupationType: Array<Link>;
+	OfferedBy: AJAXSettings;
+	OfferedIn: Array<Place>;
+	OwnedBy: AJAXSettings;
+	PreparationFrom: Array<ConditionProfile>;
+	ProcessStandards: Link;
+	ProcessStandardsDescription: string;
+	RecognizedBy: AJAXSettings;
+	RecognizedIn: Array<Place>;
+	Recommends: Array<ConditionProfile>;
+	RegulatedBy: AJAXSettings;
+	RegulatedIn: Array<Place>;
+	Requires: Array<ConditionProfile>;
+	SameAs: AJAXSettings;
+	ScoringMethodDescription: string;
+	ScoringMethodExample: Link;
+	ScoringMethodExampleDescription: string;
+	ScoringMethodType: Array<Link>;
+	Subject: Array<Link>;
+	SubjectWebpage: Link;
+	TargetLearningResource: Array<Link>;
+	TargetPathway: AJAXSettings;
+	VersionIdentifier: Array<IdentifierValue>;
+}
+
+interface LearningOpportunity {
+	// Will always be "LearningOpportunity"
+	BroadType: string;
+	// Will be "ceterms:LearningOpportunityProfile"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	AccreditedBy: AJAXSettings;
+	AccreditedIn: Array<Place>;
+	AdvancedStandingFrom: Array<ConditionProfile>;
+	ApprovedBy: AJAXSettings;
+	ApprovedIn: Array<Place>;
+	AssessmentMethodDescription: string;
+	AssessmentMethodType: Array<Link>;
+	AudienceLevelType: Array<Link>;
+	AudienceType: Array<Link>;
+	AvailabilityListing: Array<Link>;
+	AvailableAt: Array<Place>;
+	AvailableOnlineAt: Link;
+	CommonConditions: AJAXSettings;
+	CommonCosts: AJAXSettings;
+	Corequisite: Array<ConditionProfile>;
+	CreditUnitTypeDescription: string;
+	CreditValue: Array<ValueProfile>;
+	CTID: string;
+	DateEffective: string;
+	DeliveryType: Array<Link>;
+	DeliveryTypeDescription: string;
+	Description: string;
+	EntryCondition: Array<ConditionProfile>;
+	EstimatedCost: Array<CostProfile>;
+	EstimatedDuration: Array<DurationProfile>;
+	ExpirationDate: string;
+	FinancialAssistance: Array<FinancialAssistanceProfile>;
+	HasPart: AJAXSettings;
+	Identifier: Array<IdentifierValue>;
+	IndustryType: Array<Link>;
+	// BCP-47 language code for the Learning Opportunity being described, rather than the record itself. Do not confuse this with the Meta_Language metadata property above.
+	InLanguage: Array<string>;
+	InstructionalProgramType: Array<Link>;
+	IsAdvancedStandingFor: Array<ConditionProfile>;
+	IsPartOf: AJAXSettings;
+	IsPreparationFor: Array<ConditionProfile>;
+	IsRecommendedFor: Array<ConditionProfile>;
+	IsRequiredFor: Array<ConditionProfile>;
+	Jurisdiction: Array<JurisdictionProfile>;
+	Keyword: Array<string>;
+	LearningMethodDescription: string;
+	LearningMethodType: Array<Link>;
+	Name: string;
+	OccupationType: Array<Link>;
+	OfferedBy: AJAXSettings;
+	OfferedIn: Array<Place>;
+	OwnedBy: AJAXSettings;
+	PreparationFrom: Array<ConditionProfile>;
+	RecognizedBy: AJAXSettings;
+	RecognizedIn: Array<Place>;
+	Recommends: Array<ConditionProfile>;
+	RegulatedBy: AJAXSettings;
+	RegulatedIn: Array<Place>;
+	Requires: Array<ConditionProfile>;
+	SameAs: AJAXSettings;
+	Subject: Array<Link>;
+	SubjectWebpage: Link;
+	TargetAssessment: AJAXSettings;
+	TargetLearningOpportunity: AJAXSettings;
+	TargetLearningResource: Array<Link>;
+	TargetPathway: AJAXSettings;
+	Teaches: AJAXSettings;
+	VersionIdentifier: Array<IdentifierValue>;
+}
+
+interface TransferValueProfile {
+	// Will always be "TransferValueProfile"
+	BroadType: string;
+	// Will be "ceterms:TransferValueProfile"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	DerivedFrom: AJAXSettings;
+	CTID: Array<string>;
+	Description: Array<string>;
+	EndDate: string;
+	Identifier: Array<IdentifierValue>;
+	Name: string;
+	OwnedBy: AJAXSettings;
+	StartDate: string;
+	SubjectWebpage: Link;
+	TransferValue: Array<ValueProfile>;
+	TransferValueFor: AJAXSettings;
+	TransferValueFrom: AJAXSettings;
+}
+
+interface PathwaySet {
+	// Will always be "PathwaySet"
+	BroadType: string;
+	// Will be "ceterms:PathwaySet"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	CTID: string;
+	Description: string;
+	HasPathway: AJAXSettings;
+	Name: string;
+	OfferedBy: AJAXSettings;
+	OwnedBy: AJAXSettings;
+	SubjectWebpage: Link;
+}
+
+interface Pathway {
+	// Will always be "Pathway"
+	BroadType: string;
+	// Will be "ceterms:Pathway"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	HasProgressionModel: AJAXSettings;
+	// Meta property used to reference all of the components for this Pathway.
+	Meta_HasPart: AJAXSettings;
+	HasChild: AJAXSettings;
+	CTID: string;
+	Description: string;
+	HasDestinationComponent: AJAXSettings;
+	IndustryType: Array<Link>;
+	Keyword: Array<string>;
+	Name: string;
+	OccupationType: Array<Link>;
+	OfferedBy: AJAXSettings;
+	OwnedBy: AJAXSettings;
+	Subject: Array<Link>;
+	SubjectWebpage: Link;
+}
+
+interface CompetencyFramework {
+	// Will always be "CompetencyFramework"
+	BroadType: string;
+	// Will be "ceasn:CompetencyFramework"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	HasProgressionModel: AJAXSettings;
+	AlignFrom: AJAXSettings;
+	AlignTo: AJAXSettings;
+	Author: Array<string>;
+	ConceptKeyword: Array<string>;
+	ConceptTerm: Array<Link>;
+	Creator: AJAXSettings;
+	DateCopyrighted: string;
+	DateCreated: string;
+	DateModified: string;
+	DateValidFrom: string;
+	DateValidUntil: string;
+	DerivedFrom: AJAXSettings;
+	Description: string;
+	EducationLevelType: Array<Link>;
+	// Meta property used to reference all of the competencies for this Framework.
+	Meta_HasPart: AJAXSettings;
+	HasTopChild: AJAXSettings;
+	Identifier: Array<IdentifierValue>;
+	// BCP-47 language code for the Framework being described, rather than the record itself. Do not confuse this with the Meta_Language metadata property above.
+	InLanguage: Array<string>;
+	License: Array<Link>;
+	LocalSubject: Array<string>;
+	Name: string;
+	PublicationStatusType: Link;
+	Publisher: AJAXSettings;
+	PublisherName: Array<string>;
+	RepositoryDate: string;
+	Rights: string;
+	RightsHolder: AJAXSettings;
+	Source: Array<Link>;
+	CTID: string;
+	IndustryType: Array<Link>;
+	OccupationType: Array<Link>;
+}
+
+interface ConceptScheme {
+	// Will always be "ConceptScheme"
+	BroadType: string;
+	// Will be either "skos:ConceptScheme" or "asn:ProgressionModel"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	ConceptKeyword: Array<string>;
+	ConceptTerm: Array<Link>;
+	Creator: AJAXSettings;
+	DateCopyrighted: string;
+	DateCreated: string;
+	DateModified: string;
+	Description: string;
+	// BCP-47 language code for the Scheme being described, rather than the record itself. Do not confuse this with the Meta_Language metadata property above.
+	InLanguage: Array<string>;
+	License: Array<Link>;
+	Name: string;
+	PublicationStatusType: Link;
+	Publisher: AJAXSettings;
+	PublisherName: Array<string>;
+	Rights: string;
+	RightsHolder: AJAXSettings;
+	Source: Array<Link>;
+	CTID: string;
+	// Meta property used to reference all of the concepts for this Scheme.
+	Meta_HasPart: AJAXSettings;
+	HasTopConcept: AJAXSettings;
 }
 
 interface Link {
@@ -209,7 +504,6 @@ interface ProcessProfile {
 	ProcessMethodDescription: string;
 	ProcessStandards: Link;
 	ProcessStandardsDescription: string;
-	Region: Array<Place>;
 	ScoringMethodDescription: string;
 	ScoringMethodExample: Link;
 	ScoringMethodExampleDescription: string;
@@ -278,7 +572,6 @@ interface CostProfile {
 	Name: string;
 	PaymentPattern: string;
 	Price: number;
-	Region: Array<Place>;
 	ResidencyType: Array<Link>;
 	StartDate: string;
 }
@@ -349,7 +642,6 @@ interface EarningsProfile {
 	MedianEarnings: number;
 	Name: string;
 	PostReceiptMonths: number;
-	Region: Array<Place>;
 	Source: Link;
 	RelevantDataSet: AJAXSettings;
 }
@@ -371,7 +663,6 @@ interface HoldersProfile {
 	Jurisdiction: Array<JurisdictionProfile>;
 	Name: string;
 	NumberAwarded: number;
-	Region: Array<Place>;
 	Source: Link;
 	RelevantDataSet: AJAXSettings;
 }
@@ -393,7 +684,6 @@ interface VerificationServiceProfile {
 	Jurisdiction: Array<JurisdictionProfile>;
 	OfferedBy: AJAXSettings;
 	OfferedIn: Array<JurisdictionProfile>;
-	Region: Array<Place>;
 	SubjectWebpage: Link;
 	TargetCredential: AJAXSettings;
 	VerificationDirectory: Link;
