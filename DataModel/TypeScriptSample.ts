@@ -12,10 +12,10 @@ interface Organization {
 	// 3-full organization, 2-reference organization
 	Meta_StateId: int;
 	// QAReceived (combined)
-	AccreditedBy: AJAXSettings;
+	AccreditedBy: AJAXSettings;	// Organization
 	AccreditedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
-	Accredits: AJAXSettings;
+	Accredits: AJAXSettings;	// Organization, Credential, Assessment, Learning Opportunity
 	Address: Array<Place>;
 	AdministrationProcess: Array<ProcessProfile>;
 	AgentPurpose: Link;
@@ -25,22 +25,22 @@ interface Organization {
 	AlternateName: Array<string>;
 	AppealProcess: Array<ProcessProfile>;
 	// QAReceived (combined)
-	ApprovedBy: AJAXSettings;
+	ApprovedBy: AJAXSettings;	// Organization
 	ApprovedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
-	Approves: AJAXSettings;
+	Approves: AJAXSettings;	// Organization, Credential, Assessment, Learning Opportunity
 	AvailabilityListing: Array<Link>;
 	ComplaintProcess: Array<ProcessProfile>;
 	CTID: string;
-	Department: AJAXSettings;
+	Department: AJAXSettings;	// Organization
 	Description: string;
 	DevelopmentProcess: Array<ProcessProfile>;
 	DUNS: string;
 	Email: Array<string>;
 	FEIN: string;
 	FoundingDate: string;
-	HasConditionManifest: AJAXSettings;
-	HasCostManifest: AJAXSettings;
+	HasConditionManifest: AJAXSettings;	// ConditionManifest
+	HasCostManifest: AJAXSettings;	// CostManifest
 	HasVerificationService: Array<VerificationServiceProfile>;
 	Identifier: Array<IdentifierValue>;
 	Image: Link;
@@ -56,32 +56,32 @@ interface Organization {
 	// Generally NAICS is merged in Industry type. So no need to display separately?
 	NAICS: Array<string>;
 	Name: string;
-	Offers: AJAXSettings;
+	Offers: AJAXSettings;	// Credential, Assessment, Learning Opportunity
 	OPEID: string;
-	Owns: AJAXSettings;
-	ParentOrganization: AJAXSettings;
+	Owns: AJAXSettings;	// Credential, Assessment, Learning Opportunity
+	ParentOrganization: AJAXSettings;	// Organization
 	QualityAssuranceTargetType: Array<Link>;
 	// QAReceived (combined)
-	RecognizedBy: AJAXSettings;
+	RecognizedBy: AJAXSettings;	// Organization
 	RecognizedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
-	Recognizes: AJAXSettings;
+	Recognizes: AJAXSettings;	// Organization, Credential, Assessment, Learning Opportunity
 	// QAReceived (combined)
-	RegulatedBy: AJAXSettings;
+	RegulatedBy: AJAXSettings;	// Organization
 	RegulatedIn: Array<JurisdictionProfile>;
 	// QualityAssurancePerformed
-	Regulates: AJAXSettings;
+	Regulates: AJAXSettings;	// Organization
 	// Same as Owns/Offers link
-	Renews: AJAXSettings;
+	Renews: AJAXSettings;	// Credential
 	ReviewProcess: Array<ProcessProfile>;
 	RevocationProcess: Array<ProcessProfile>;
 	// Same as Owns/Offers link
-	Revokes: AJAXSettings;
-	SameAs: AJAXSettings;
+	Revokes: AJAXSettings;	// Credential
+	SameAs: AJAXSettings;	// Organization
 	ServiceType: Array<Link>;
 	SocialMedia: Array<Link>;
 	SubjectWebpage: Link;
-	SubOrganization: AJAXSettings;
+	SubOrganization: AJAXSettings;	// Organization
 	TransferValueStatement: Link;
 	TransferValueStatementDescription: string;
 }
@@ -89,17 +89,18 @@ interface Organization {
 interface Credential {
 	// Will always be "Credential"
 	BroadType: string;
-	// Will be the Shorthand URI for one of the subclasses of ceterms:Credential (See "Credential and Subclasses": https://credreg.net/ctdl/terms#groups )
+	// Will be the Shorthand URI for one of the subclasses of ceterms:Credential (See "Credential and Subclasses": https://credreg.net/ctdl/terms#groups ). Note: group badge types
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
 	Meta_Language: string;
-	AccreditedBy: AJAXSettings;
+	// Quality Assurance
+	AccreditedBy: AJAXSettings;	// Organization
 	AccreditedIn: Array<JurisdictionProfile>;
 	AdministrationProcess: Array<ProcessProfile>;
 	AdvancedStandingFrom: Array<ConditionProfile>;
 	AlternateName: Array<string>;
 	AppealProcess: Array<ProcessProfile>;
-	ApprovedBy: AJAXSettings;
+	ApprovedBy: AJAXSettings;	// Organization
 	ApprovedIn: Array<JurisdictionProfile>;
 	AssessmentDeliveryType: Array<Link>;
 	AudienceLevelType: Array<Link>;
@@ -107,11 +108,11 @@ interface Credential {
 	AvailabilityListing: Array<Link>;
 	AvailableAt: Array<Place>;
 	AvailableOnlineAt: Link;
-	BroadAlignment: AJAXSettings;
-	CommonConditions: AJAXSettings;
-	CommonCosts: AJAXSettings;
+	CommonConditions: AJAXSettings;	// ConditionManifest
+	CommonCosts: AJAXSettings;	// CostManifest
+	Meta_Connections: Array<ConnectionSet>;
 	ComplaintProcess: Array<ProcessProfile>;
-	CopyrightHolder: AJAXSettings;
+	CopyrightHolder: AJAXSettings;	// Organization
 	Corequisite: Array<ConditionProfile>;
 	CredentialId: string;
 	CredentialStatusType: Link;
@@ -126,10 +127,9 @@ interface Credential {
 	EmploymentOutcome: Array<EmploymentOutcomeProfile>;
 	EstimatedCost: Array<CostProfile>;
 	EstimatedDuration: Array<DurationProfile>;
-	ExactAlignment: AJAXSettings;
 	ExpirationDate: string;
 	FinancialAssistance: Array<FinancialAssistanceProfile>;
-	HasPart: AJAXSettings;
+	HasPart: AJAXSettings;	// Credential
 	Holders: Array<HoldersProfile>;
 	Identifier: Array<IdentifierValue>;
 	Image: Link;
@@ -139,50 +139,47 @@ interface Credential {
 	InstructionalProgramType: Array<Link>;
 	IsAdvancedStandingFor: Array<ConditionProfile>;
 	ISICV4: string;
-	IsPartOf: AJAXSettings;
+	IsPartOf: AJAXSettings;	// Credential
 	IsPreparationFor: Array<ConditionProfile>;
 	IsRecommendedFor: Array<ConditionProfile>;
 	IsRequiredFor: Array<ConditionProfile>;
 	Jurisdiction: Array<JurisdictionProfile>;
 	Keyword: Array<string>;
-	LatestVersion: AJAXSettings;
+	LatestVersion: AJAXSettings;	// Credential
 	LearningDeliveryType: Array<Link>;
 	MaintenanceProcess: Array<ProcessProfile>;
-	MajorAlignment: AJAXSettings;
-	MinorAlignment: AJAXSettings;
 	NAICS: string;
 	Name: string;
-	NarrowAlignment: AJAXSettings;
-	NextVersion: AJAXSettings;
+	NextVersion: AJAXSettings;	// Credential
 	OccupationType: Array<Link>;
-	OfferedBy: AJAXSettings;
+	OfferedBy: AJAXSettings;	// Organization
 	OfferedIn: Array<JurisdictionProfile>;
-	OwnedBy: AJAXSettings;
+	OwnedBy: AJAXSettings;	// Organization
 	PreparationFrom: Array<ConditionProfile>;
-	PreviousVersion: AJAXSettings;
+	PreviousVersion: AJAXSettings;	// Credential
 	ProcessStandards: Link;
 	ProcessStandardsDescription: string;
-	RecognizedBy: AJAXSettings;
+	RecognizedBy: AJAXSettings;	// Organization
 	RecognizedIn: Array<JurisdictionProfile>;
 	Recommends: Array<ConditionProfile>;
-	RegulatedBy: AJAXSettings;
+	RegulatedBy: AJAXSettings;	// Organization
 	RegulatedIn: Array<JurisdictionProfile>;
 	Renewal: Array<ConditionProfile>;
 	RenewalFrequency: Array<DurationProfile>;
-	RenewedBy: AJAXSettings;
+	RenewedBy: AJAXSettings;	// Organization
 	RenewedIn: Array<JurisdictionProfile>;
 	Requires: Array<ConditionProfile>;
 	ReviewProcess: Array<ProcessProfile>;
 	Revocation: Array<RevocationProfile>;
 	RevocationProcess: Array<ProcessProfile>;
-	RevokedBy: AJAXSettings;
+	RevokedBy: AJAXSettings;	// Organization
 	RevokedIn: Array<JurisdictionProfile>;
-	SameAs: AJAXSettings;
+	SameAs: AJAXSettings;	// Credential
 	Subject: Array<Link>;
 	SubjectWebpage: Link;
-	SupersededBy: AJAXSettings;
-	Supersedes: AJAXSettings;
-	TargetPathway: AJAXSettings;
+	SupersededBy: AJAXSettings;	// Credential
+	Supersedes: AJAXSettings;	// Credential
+	TargetPathway: AJAXSettings;	// Pathway
 	VersionIdentifier: Array<IdentifierValue>;
 }
 
@@ -193,13 +190,13 @@ interface Assessment {
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
 	Meta_Language: string;
-	AccreditedBy: AJAXSettings;
+	AccreditedBy: AJAXSettings;	// Organization
 	AccreditedIn: Array<JurisdictionProfile>;
 	AdministrationProcess: Array<ProcessProfile>;
 	AdvancedStandingFrom: Array<ConditionProfile>;
-	ApprovedBy: AJAXSettings;
+	ApprovedBy: AJAXSettings;	// Organization
 	ApprovedIn: Array<JurisdictionProfile>;
-	Assesses: AJAXSettings;
+	Assesses: AJAXSettings;	// Competency
 	AssessmentExample: Link;
 	AssessmentExampleDescription: string;
 	AssessmentMethodDescription: string;
@@ -211,8 +208,8 @@ interface Assessment {
 	AvailabilityListing: Array<Link>;
 	AvailableAt: Array<Place>;
 	AvailableOnlineAt: Link;
-	CommonConditions: AJAXSettings;
-	CommonCosts: AJAXSettings;
+	CommonConditions: AJAXSettings;	// ConditionManifest
+	CommonCosts: AJAXSettings;	// CostManifest
 	Corequisite: Array<ConditionProfile>;
 	CreditUnitTypeDescription: string;
 	CreditValue: Array<ValueProfile>;
@@ -246,19 +243,19 @@ interface Assessment {
 	MaintenanceProcess: Array<ProcessProfile>;
 	Name: string;
 	OccupationType: Array<Link>;
-	OfferedBy: AJAXSettings;
+	OfferedBy: AJAXSettings;	// Organization
 	OfferedIn: Array<JurisdictionProfile>;
-	OwnedBy: AJAXSettings;
+	OwnedBy: AJAXSettings;	// Organization
 	PreparationFrom: Array<ConditionProfile>;
 	ProcessStandards: Link;
 	ProcessStandardsDescription: string;
-	RecognizedBy: AJAXSettings;
+	RecognizedBy: AJAXSettings;	// Organization
 	RecognizedIn: Array<JurisdictionProfile>;
 	Recommends: Array<ConditionProfile>;
-	RegulatedBy: AJAXSettings;
+	RegulatedBy: AJAXSettings;	// Organization
 	RegulatedIn: Array<JurisdictionProfile>;
 	Requires: Array<ConditionProfile>;
-	SameAs: AJAXSettings;
+	SameAs: AJAXSettings;	// Assessment
 	ScoringMethodDescription: string;
 	ScoringMethodExample: Link;
 	ScoringMethodExampleDescription: string;
@@ -266,7 +263,7 @@ interface Assessment {
 	Subject: Array<Link>;
 	SubjectWebpage: Link;
 	TargetLearningResource: Array<Link>;
-	TargetPathway: AJAXSettings;
+	TargetPathway: AJAXSettings;	// Pathway
 	VersionIdentifier: Array<IdentifierValue>;
 }
 
@@ -277,10 +274,10 @@ interface LearningOpportunity {
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
 	Meta_Language: string;
-	AccreditedBy: AJAXSettings;
+	AccreditedBy: AJAXSettings;	// Organization
 	AccreditedIn: Array<JurisdictionProfile>;
 	AdvancedStandingFrom: Array<ConditionProfile>;
-	ApprovedBy: AJAXSettings;
+	ApprovedBy: AJAXSettings;	// Organization
 	ApprovedIn: Array<JurisdictionProfile>;
 	AssessmentMethodDescription: string;
 	AssessmentMethodType: Array<Link>;
@@ -289,8 +286,8 @@ interface LearningOpportunity {
 	AvailabilityListing: Array<Link>;
 	AvailableAt: Array<Place>;
 	AvailableOnlineAt: Link;
-	CommonConditions: AJAXSettings;
-	CommonCosts: AJAXSettings;
+	CommonConditions: AJAXSettings;	// ConditionManifest
+	CommonCosts: AJAXSettings;	// CostManifest
 	Corequisite: Array<ConditionProfile>;
 	CreditUnitTypeDescription: string;
 	CreditValue: Array<ValueProfile>;
@@ -304,14 +301,14 @@ interface LearningOpportunity {
 	EstimatedDuration: Array<DurationProfile>;
 	ExpirationDate: string;
 	FinancialAssistance: Array<FinancialAssistanceProfile>;
-	HasPart: AJAXSettings;
+	HasPart: AJAXSettings;	// LearningOpportunity
 	Identifier: Array<IdentifierValue>;
 	IndustryType: Array<Link>;
 	// BCP-47 language code for the Learning Opportunity being described, rather than the record itself. Do not confuse this with the Meta_Language metadata property above.
 	InLanguage: Array<string>;
 	InstructionalProgramType: Array<Link>;
 	IsAdvancedStandingFor: Array<ConditionProfile>;
-	IsPartOf: AJAXSettings;
+	IsPartOf: AJAXSettings;	// LearningOpportunity
 	IsPreparationFor: Array<ConditionProfile>;
 	IsRecommendedFor: Array<ConditionProfile>;
 	IsRequiredFor: Array<ConditionProfile>;
@@ -321,24 +318,24 @@ interface LearningOpportunity {
 	LearningMethodType: Array<Link>;
 	Name: string;
 	OccupationType: Array<Link>;
-	OfferedBy: AJAXSettings;
+	OfferedBy: AJAXSettings;	// Organization
 	OfferedIn: Array<JurisdictionProfile>;
-	OwnedBy: AJAXSettings;
+	OwnedBy: AJAXSettings;	// Organization
 	PreparationFrom: Array<ConditionProfile>;
-	RecognizedBy: AJAXSettings;
+	RecognizedBy: AJAXSettings;	// Organization
 	RecognizedIn: Array<JurisdictionProfile>;
 	Recommends: Array<ConditionProfile>;
-	RegulatedBy: AJAXSettings;
+	RegulatedBy: AJAXSettings;	// Organization
 	RegulatedIn: Array<JurisdictionProfile>;
 	Requires: Array<ConditionProfile>;
-	SameAs: AJAXSettings;
+	SameAs: AJAXSettings;	// LearningOpportunity
 	Subject: Array<Link>;
 	SubjectWebpage: Link;
-	TargetAssessment: AJAXSettings;
-	TargetLearningOpportunity: AJAXSettings;
+	TargetAssessment: AJAXSettings;	// Assessment
+	TargetLearningOpportunity: AJAXSettings;	// LearningOpportunity
 	TargetLearningResource: Array<Link>;
-	TargetPathway: AJAXSettings;
-	Teaches: AJAXSettings;
+	TargetPathway: AJAXSettings;	// Pathway
+	Teaches: AJAXSettings;	// Competency
 	VersionIdentifier: Array<IdentifierValue>;
 }
 
@@ -349,18 +346,18 @@ interface TransferValueProfile {
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
 	Meta_Language: string;
-	DerivedFrom: AJAXSettings;
+	DerivedFrom: AJAXSettings;	// TransferValueProfile
 	CTID: Array<string>;
 	Description: Array<string>;
 	EndDate: string;
 	Identifier: Array<IdentifierValue>;
 	Name: string;
-	OwnedBy: AJAXSettings;
+	OwnedBy: AJAXSettings;	// Organization
 	StartDate: string;
 	SubjectWebpage: Link;
 	TransferValue: Array<ValueProfile>;
-	TransferValueFor: AJAXSettings;
-	TransferValueFrom: AJAXSettings;
+	TransferValueFor: AJAXSettings;	// Credential, Assessment, Learning Opportunity, Competency
+	TransferValueFrom: AJAXSettings;	// Credential, Assessment, Learning Opportunity, Competency
 }
 
 interface PathwaySet {
@@ -372,10 +369,10 @@ interface PathwaySet {
 	Meta_Language: string;
 	CTID: string;
 	Description: string;
-	HasPathway: AJAXSettings;
+	HasPathway: AJAXSettings;	// Pathway
 	Name: string;
-	OfferedBy: AJAXSettings;
-	OwnedBy: AJAXSettings;
+	OfferedBy: AJAXSettings;	// Organization
+	OwnedBy: AJAXSettings;	// Organization
 	SubjectWebpage: Link;
 }
 
@@ -386,19 +383,19 @@ interface Pathway {
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
 	Meta_Language: string;
-	HasProgressionModel: AJAXSettings;
+	HasProgressionModel: AJAXSettings;	// ConceptScheme
 	// Meta property used to reference all of the components for this Pathway.
-	Meta_HasPart: AJAXSettings;
-	HasChild: AJAXSettings;
+	Meta_HasPart: AJAXSettings;	// PathwayComponent
+	HasChild: AJAXSettings;	// PathwayComponent
 	CTID: string;
 	Description: string;
-	HasDestinationComponent: AJAXSettings;
+	HasDestinationComponent: AJAXSettings;	// PathwayComponent
 	IndustryType: Array<Link>;
 	Keyword: Array<string>;
 	Name: string;
 	OccupationType: Array<Link>;
-	OfferedBy: AJAXSettings;
-	OwnedBy: AJAXSettings;
+	OfferedBy: AJAXSettings;	// Organization
+	OwnedBy: AJAXSettings;	// Organization
 	Subject: Array<Link>;
 	SubjectWebpage: Link;
 }
@@ -410,24 +407,24 @@ interface CompetencyFramework {
 	CTDLType: string;
 	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
 	Meta_Language: string;
-	HasProgressionModel: AJAXSettings;
-	AlignFrom: AJAXSettings;
-	AlignTo: AJAXSettings;
+	HasProgressionModel: AJAXSettings;	// ConceptScheme
+	AlignFrom: AJAXSettings;	// CompetencyFramework
+	AlignTo: AJAXSettings;	// CompetencyFramework
 	Author: Array<string>;
 	ConceptKeyword: Array<string>;
 	ConceptTerm: Array<Link>;
-	Creator: AJAXSettings;
+	Creator: AJAXSettings;	// Organization
 	DateCopyrighted: string;
 	DateCreated: string;
 	DateModified: string;
 	DateValidFrom: string;
 	DateValidUntil: string;
-	DerivedFrom: AJAXSettings;
+	DerivedFrom: AJAXSettings;	// CompetencyFramework
 	Description: string;
 	EducationLevelType: Array<Link>;
 	// Meta property used to reference all of the competencies for this Framework.
-	Meta_HasPart: AJAXSettings;
-	HasTopChild: AJAXSettings;
+	Meta_HasPart: AJAXSettings;	// Competency
+	HasTopChild: AJAXSettings;	// Competency
 	Identifier: Array<IdentifierValue>;
 	// BCP-47 language code for the Framework being described, rather than the record itself. Do not confuse this with the Meta_Language metadata property above.
 	InLanguage: Array<string>;
@@ -435,11 +432,11 @@ interface CompetencyFramework {
 	LocalSubject: Array<string>;
 	Name: string;
 	PublicationStatusType: Link;
-	Publisher: AJAXSettings;
+	Publisher: AJAXSettings;	// Organization
 	PublisherName: Array<string>;
 	RepositoryDate: string;
 	Rights: string;
-	RightsHolder: AJAXSettings;
+	RightsHolder: AJAXSettings;	// Organization
 	Source: Array<Link>;
 	CTID: string;
 	IndustryType: Array<Link>;
@@ -455,7 +452,7 @@ interface ConceptScheme {
 	Meta_Language: string;
 	ConceptKeyword: Array<string>;
 	ConceptTerm: Array<Link>;
-	Creator: AJAXSettings;
+	Creator: AJAXSettings;	// Organization
 	DateCopyrighted: string;
 	DateCreated: string;
 	DateModified: string;
@@ -465,15 +462,15 @@ interface ConceptScheme {
 	License: Array<Link>;
 	Name: string;
 	PublicationStatusType: Link;
-	Publisher: AJAXSettings;
+	Publisher: AJAXSettings;	// Organization
 	PublisherName: Array<string>;
 	Rights: string;
-	RightsHolder: AJAXSettings;
+	RightsHolder: AJAXSettings;	// Organization
 	Source: Array<Link>;
 	CTID: string;
 	// Meta property used to reference all of the concepts for this Scheme.
-	Meta_HasPart: AJAXSettings;
-	HasTopConcept: AJAXSettings;
+	Meta_HasPart: AJAXSettings;	// Concept
+	HasTopConcept: AJAXSettings;	// Concept
 }
 
 interface Link {
@@ -486,7 +483,7 @@ interface Link {
 }
 
 interface JurisdictionProfile {
-	AssertedBy: AJAXSettings;
+	AssertedBy: AJAXSettings;	// Organization
 	Description: string;
 	GlobalJurisdiction: boolean;
 	JurisdictionException: Array<Place>;
@@ -499,7 +496,7 @@ interface ProcessProfile {
 	ExternalInputType: Array<Link>;
 	Jurisdiction: Array<JurisdictionProfile>;
 	ProcessFrequency: string;
-	ProcessingAgent: AJAXSettings;
+	ProcessingAgent: AJAXSettings;	// Organization
 	ProcessMethod: Link;
 	ProcessMethodDescription: string;
 	ProcessStandards: Link;
@@ -508,10 +505,10 @@ interface ProcessProfile {
 	ScoringMethodExample: Link;
 	ScoringMethodExampleDescription: string;
 	SubjectWebpage: Link;
-	TargetAssessment: AJAXSettings;
-	TargetCompetencyFramework: AJAXSettings;
-	TargetCredential: AJAXSettings;
-	TargetLearningOpportunity: AJAXSettings;
+	TargetAssessment: AJAXSettings;	// Assessment
+	TargetCompetencyFramework: AJAXSettings;	// CompetencyFramework
+	TargetCredential: AJAXSettings;	// Credential
+	TargetLearningOpportunity: AJAXSettings;	// LearningOpportunity
 	VerificationMethodDescription: string;
 }
 
@@ -523,10 +520,10 @@ interface IdentifierValue {
 
 interface ConditionProfile {
 	AlternativeCondition: Array<ConditionProfile>;
-	AssertedBy: AJAXSettings;
+	AssertedBy: AJAXSettings;	// Organization
 	AudienceLevelType: Array<Link>;
 	AudienceType: Array<Link>;
-	CommonCosts: AJAXSettings;
+	CommonCosts: AJAXSettings;	// CostManifest
 	Condition: Array<string>;
 	CreditUnitTypeDescription: string;
 	CreditValue: Array<ValueProfile>;
@@ -535,17 +532,20 @@ interface ConditionProfile {
 	EstimatedCost: Array<CostProfile>;
 	Experience: string;
 	Jurisdiction: Array<JurisdictionProfile>;
+	// ignore if zero
 	MinimumAge: number;
 	Name: string;
 	ResidentOf: Array<Place>;
 	SubjectWebpage: Link;
 	SubmissionOf: Link;
 	SubmissionOfDescription: string;
-	TargetAssessment: AJAXSettings;
-	TargetCompetency: AJAXSettings;
-	TargetCredential: AJAXSettings;
-	TargetLearningOpportunity: AJAXSettings;
+	TargetAssessment: AJAXSettings;	// Assessment
+	TargetCompetency: AJAXSettings;	// Competency
+	TargetCredential: AJAXSettings;	// Credential
+	TargetLearningOpportunity: AJAXSettings;	// LearningOpportunity
+	// ignore if zero
 	Weight: number;
+	// ignore if zero
 	YearsOfExperience: number;
 }
 
@@ -611,7 +611,6 @@ interface QuantitativeValue {
 }
 
 interface ConditionManifest {
-	ConditionManifestOf: AJAXSettings;
 	Corequisite: Array<ConditionProfile>;
 	CTID: string;
 	Description: string;
@@ -625,7 +624,6 @@ interface ConditionManifest {
 
 interface CostManifest {
 	CostDetails: Link;
-	CostManifestOf: Link;
 	CTID: string;
 	Description: string;
 	EndDate: string;
@@ -643,7 +641,7 @@ interface EarningsProfile {
 	Name: string;
 	PostReceiptMonths: number;
 	Source: Link;
-	RelevantDataSet: AJAXSettings;
+	RelevantDataSet: AJAXSettings;	// DataSetProfile
 }
 
 interface EmploymentOutcomeProfile {
@@ -653,7 +651,7 @@ interface EmploymentOutcomeProfile {
 	Jurisdiction: Array<JurisdictionProfile>;
 	Name: string;
 	Source: Link;
-	RelevantDataSet: AJAXSettings;
+	RelevantDataSet: AJAXSettings;	// DataSetProfile
 }
 
 interface HoldersProfile {
@@ -664,7 +662,7 @@ interface HoldersProfile {
 	Name: string;
 	NumberAwarded: number;
 	Source: Link;
-	RelevantDataSet: AJAXSettings;
+	RelevantDataSet: AJAXSettings;	// DataSetProfile
 }
 
 interface AJAXSettings {
@@ -679,15 +677,184 @@ interface AJAXSettings {
 interface VerificationServiceProfile {
 	DateEffective: string;
 	Description: string;
-	EstimatedCost: Array<AJAXSettings>;
+	EstimatedCost: Array<CostProfile>;
 	HolderMustAuthorize: boolean;
 	Jurisdiction: Array<JurisdictionProfile>;
-	OfferedBy: AJAXSettings;
+	OfferedBy: AJAXSettings;	// Organization
 	OfferedIn: Array<JurisdictionProfile>;
 	SubjectWebpage: Link;
-	TargetCredential: AJAXSettings;
+	TargetCredential: AJAXSettings;	// Credential
 	VerificationDirectory: Link;
 	VerificationMethodDescription: string;
-	VerificationService: AJAXSettings;
-	VerifiedClaimType: AJAXSettings;
+	VerificationService: Link;
+	VerifiedClaimType: Link;
+}
+
+interface Place {
+	AddressCountry: string;
+	AddressLocality: string;
+	AddressRegion: string;
+	Description: string;
+	GeoURI: Link;
+	Latitude: number;
+	Longitude: number;
+	Name: string;
+	PostalCode: string;
+	PostOfficeBoxNumber: string;
+	StreetAddress: string;
+	TargetContactPoint: Array<ContactPoint>;
+}
+
+interface ContactPoint {
+	ContactType: string;
+	Email: string;
+	FaxNumber: string;
+	Name: string;
+	SocialMedia: Array<Link>;
+	Telephone: string;
+}
+
+interface PathwayComponent {
+	// Will always be "PathwayComponent". Note that PathwayComponents are bundled with their parent Pathway and thus will usually all be presented together in a given data set, eliminating the need for many actual AJAX calls
+	BroadType: string;
+	// Will be one of the subclasses of ceterms:PathwayComponent (See: "Pathway Component and Subclasses" https://credreg.net/ctdl/terms#groups )
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	HasProgressionLevel: AJAXSettings;	// ConceptScheme
+	// List of URIs to other PathwayComponents
+	HasChild: Array<string>;
+	// List of URIs to other PathwayComponents
+	IsChildOf: Array<string>;
+	ComponentDesignation: Array<Link>;
+	CTID: string;
+	Description: string;
+	HasCondition: ComponentCondition;
+	Identifier: IdentifierValue;
+	// List of URIs to Pathways. Almost always only one URI.
+	IsDestinationComponentOf: Array<string>;
+	// List of URIs to Pathways. Almost always only one URI.
+	IsPartOf: Array<string>;
+	Name: string;
+	PointValue: Array<QuantitativeValue>;
+	// List of URIs to other PathwayComponents
+	Precedes: Array<string>;
+	// List of URIs to other PathwayComponents
+	Prerequisite: Array<string>;
+	ProgramTerm: Array<Link>;
+	SourceData: Link;
+	SubjectWebpage: Link;
+	// Only relevant for ceterms:CredentialComponent
+	CredentialType: Link;
+	// Only relevant for ceterms:CourseComponent
+	CreditValue: Array<ValueProfile>;
+	// Only relevant for ceterms:JobComponent
+	IndustryType: Array<Link>;
+	// Only relevant for ceterms:JobComponent
+	OccupationType: Array<Link>;
+}
+
+interface Competency {
+	// Will always be "Competency". Note that Competencies are bundled with their parent CompetencyFramework and thus will usually all be presented together in a given data set, eliminating the need for many actual AJAX calls
+	BroadType: string;
+	// Will be "ceasn:Competency"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	CTID: string;
+	HasProgressionLevel: AJAXSettings;	// Concept
+	AbilityEmbodied: AJAXSettings;	// Competency
+	AlignFrom: AJAXSettings;	// Competency
+	AlignTo: AJAXSettings;	// Competency
+	AltCodedNotation: Array<string>;
+	BroadAlignment: AJAXSettings;	// Competency
+	CodedNotation: string;
+	Comment: string;
+	CompetencyCategory: string;
+	CompetencyLabel: string;
+	CompetencyText: string;
+	ConceptKeyword: string;
+	ConceptTerm: Array<Link>;
+	EducationLevelType: Array<Link>;
+	ExactAlignment: AJAXSettings;	// Competency
+	// List of URIs to other Competencies
+	HasChild: Array<string>;
+	Identifier: Array<IdentifierValue>;
+	// List of URIs to other Competencies. Almost always only one URI.
+	IsChildOf: Array<string>;
+	// List of URIs to CompetencyFrameworks. Almost always only one URI.
+	IsPartOf: Array<string>;
+	// List of URIs to CompetencyFrameworks. Almost always only one URI.
+	IsTopChildOf: Array<string>;
+	KnowledgeEmbodied: AJAXSettings;	// Competency
+	ListID: string;
+	LocalSubject: Array<string>;
+	MajorAlignment: AJAXSettings;	// Competency
+	MinorAlignment: AJAXSettings;	// Competency
+	NarrowAlignment: AJAXSettings;	// Competency
+	PrerequisiteAlignment: AJAXSettings;	// Competency
+	ShouldIndex: boolean;
+	SkillEmbodied: AJAXSettings;	// Competency
+	TaskEmbodied: Array<Link>;
+	Weight: Number;
+}
+
+interface Concept {
+	// Will always be "Concept". Note that Concepts are bundled with their parent ConceptScheme and thus will usually all be presented together in a given data set, eliminating the need for many actual AJAX calls
+	BroadType: string;
+	// Will be "skos:Concept" or "asn:ProgressionLevel"
+	CTDLType: string;
+	// Will always be a BCP-47 language code, forced to all lowercase. Usually "en". This will indicate the language used by all of the relevant string values for this record.
+	Meta_Language: string;
+	CTID: string;
+	AltLabel: string;
+	// List of URIs to other Concepts
+	Broader: Array<string>;
+	BroadMatch: AJAXSettings;	// Concept
+	ChangeNote: string;
+	CloseMatch: AJAXSettings;	// Concept
+	Definition: string;
+	ExactMatch: AJAXSettings;	// Concept
+	HiddenLabel: string;
+	// List of URIs to ConceptSchemes. Almost always only one URI.
+	InScheme: Array<string>;
+	// List of URIs to other Concepts
+	Narrower: Array<string>;
+	NarrowMatch: AJAXSettings;	// Concept
+	Notation: string;
+	Note: string;
+	PrefLabel: string;
+	Related: AJAXSettings;	// Concept
+	// List of URIs to ConceptSchemes. Almost always only one URI.
+	TopConceptOf: Array<string>;
+}
+
+interface ConnectionSummary {
+	// Bubbled-Up Requirements
+	Requires: ConnectionTargetSet;
+	// Bubbled-Up Recommendations
+	Recommends: ConnectionTargetSet;
+	// Bubbled-Up Advanced Standing connections
+	AdvancedStandingFrom: ConnectionTargetSet;
+	// Bubbled-Up Preparation connections
+	PreparationFrom: ConnectionTargetSet;
+	// Bubbled-Up Inverse Requirements
+	IsRequiredFor: ConnectionTargetSet;
+	// Bubbled-Up Inverse Recommendations
+	IsRecommendedFor: ConnectionTargetSet;
+	// Bubbled-Up Inverse Advanced Standing connections
+	IsAdvancedStandingFor: ConnectionTargetSet;
+	// Bubbled-Up Inverse Preparation connections
+	IsPreparationFor: ConnectionTargetSet;
+}
+
+interface ConnectionTargetSet {
+	// Bubbled-Up connections to Credentials
+	TargetCredential: AJAXSettings;	// Credential
+	// Bubbled-Up connections to Assessments
+	TargetAssessment: AJAXSettings;	// Assessment
+	// Bubbled-Up connections to LearningOpportunities
+	TargetLearningOpportunity: AJAXSettings;	// LearningOpportunity
+	// Bubbled-Up connections to Competencies
+	TargetCompetency: AJAXSettings;	// Competency
 }
