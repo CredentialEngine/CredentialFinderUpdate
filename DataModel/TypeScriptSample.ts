@@ -110,7 +110,7 @@ interface Credential {
 	AvailableOnlineAt: Link;
 	CommonConditions: AJAXSettings;	// ConditionManifest
 	CommonCosts: AJAXSettings;	// CostManifest
-	Meta_Connections: Array<ConnectionSet>;
+	Meta_Connections: Array<ConnectionSummary>;
 	ComplaintProcess: Array<ProcessProfile>;
 	CopyrightHolder: AJAXSettings;	// Organization
 	Corequisite: Array<ConditionProfile>;
