@@ -281,3 +281,7 @@ paket-files/
 /src/Import.Services/RegistryModels/Navy/Json/Job.cs
 /src/Import.Services/RegistryModels/Navy/Json/EnlistedClassification.cs
 /src/Import.Services/RegistryModels/Navy/Json/BaseTask.cs
+
+#  prototypes
+/src/Prototypes/*.*
+src/Prototypes/CredentialFinder2021/CredentialFinder2021.sln
